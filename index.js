@@ -30,7 +30,6 @@ const deleteBullet = () => {
 }
 
 const shot = (e) => {
-  let count = 0;
   const judgekey = e.keyCode;
   const repeatStart = setInterval(putBullet,1000)
   const repeatEnd = setTimeout(() => {clearInterval(repeatStart)}, 8000)

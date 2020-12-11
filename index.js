@@ -14,21 +14,30 @@ const putBullet = () => {
   curBullet += 140
   bullet.style.left = curBullet + 'px'
 
-  if(curBullet >= 1510) {
-    container.removeChild(bullet)
-    curBullet = 390;
-  }
+  // if(curBullet >= 1510) {
+  //   container.lastChild.remove(bullet)
+  //   curBullet = 390;
+  // }
   console.log(curBullet)
 }
 
+const deleteBullet = () => {
+  const bullet = document.querySelector('#bullet')
+  if(curBullet >= 1510) {
+    container.lastChild.remove(bullet)
+    curBullet = 390;
+  }
+}
 
 const shot = (e) => {
   let count = 0;
   const judgekey = e.keyCode;
   const repeatStart = setInterval(putBullet,1000)
   const repeatEnd = setTimeout(() => {clearInterval(repeatStart)}, 8000)
+  const judgeOfdelete = setInterval(deleteBullet,1000);
   if (judgekey === 68) {
     createBullet();
+    judgeOfdelete
     repeatStart
     repeatEnd
   }

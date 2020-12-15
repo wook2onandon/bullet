@@ -5,40 +5,41 @@ const createBullet = () => {
   const newBullet = document.createElement('img');
   newBullet.setAttribute('id', 'bullet');
   container.appendChild(newBullet);
+  
+  return newBullet;
 }
 
-let curBullet = 390;
 
-const putBullet = () => {
-  const bullet = document.querySelector('#bullet')
-  curBullet += 140
+const putBullet = (bullet) => {
+  let curBullet = 390;
   bullet.style.left = curBullet + 'px'
-
-  // if(curBullet >= 1510) {
-  //   container.lastChild.remove(bullet)
-  //   curBullet = 390;
-  // }
+  const intervalBullet = setInterval(()=>{curBullet += 140;},1000)
+  const clearBullet = setTimeout(() => {clearInterval(intervalBullet)}, 8000)
+  intervalBullet
+  clearBullet
   console.log(curBullet)
+  
+  return curBullet
 }
 
-const deleteBullet = () => {
-  const bullet = document.querySelector('#bullet')
+const deleteBullet = (bullet) => {
+  const judgeOfdelete = setInterval(bullet,1000);
+  judgeOfdelete
   if(curBullet >= 1510) {
-    container.lastChild.remove(bullet)
-    curBullet = 390;
+    container.remove(bullet)
   }
 }
 
 const shot = (e) => {
   const judgekey = e.keyCode;
-  const repeatStart = setInterval(putBullet,1000)
-  const repeatEnd = setTimeout(() => {clearInterval(repeatStart)}, 8000)
-  const judgeOfdelete = setInterval(deleteBullet,1000);
+  const createNewBullet = createBullet()
+  const curPutBullet = putBullet()
+  const valuePutbullet = putBullet(createNewBullet)
+  const valueDeletebullet = deleteBullet(curPutBullet)
+
   if (judgekey === 68) {
-    createBullet();
-    judgeOfdelete
-    repeatStart
-    repeatEnd
+    valuePutbullet
+    valueDeletebullet
   }
 } 
 

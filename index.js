@@ -11,35 +11,33 @@ const createBullet = () => {
 
 
 const putBullet = (bullet) => {
-  let curBullet = 390;
+  let curBullet = 220;
   bullet.style.left = curBullet + 'px'
-  const intervalBullet = setInterval(()=>{curBullet += 140;},1000)
-  const clearBullet = setTimeout(() => {clearInterval(intervalBullet)}, 8000)
-  intervalBullet
-  clearBullet
-  console.log(curBullet)
-  
-  return curBullet
+  const intervalBullet = setInterval(()=>{
+    bullet.style.left = curBullet + 'px'
+    curBullet += 40;
+    if (curBullet > 1700) {
+      deleteBullet(bullet)
+      clearInterval(intervalBullet)
+    }
+    console.log(curBullet)
+  },100)
 }
 
 const deleteBullet = (bullet) => {
-  const judgeOfdelete = setInterval(bullet,1000);
-  judgeOfdelete
-  if(curBullet >= 1510) {
-    container.remove(bullet)
-  }
+  container.removeChild(bullet)
 }
 
 const shot = (e) => {
   const judgekey = e.keyCode;
-  const createNewBullet = createBullet()
-  const curPutBullet = putBullet()
-  const valuePutbullet = putBullet(createNewBullet)
-  const valueDeletebullet = deleteBullet(curPutBullet)
+  
+  // const curPutBullet = putBullet()
+  // const valuePutbullet = putBullet(createNewBullet)
+  // const valueDeletebullet = deleteBullet(curPutBullet)
 
   if (judgekey === 68) {
-    valuePutbullet
-    valueDeletebullet
+    const createNewBullet = createBullet()
+    putBullet(createNewBullet)
   }
 } 
 

@@ -16,7 +16,7 @@ const putBullet = (bullet) => {
   const intervalBullet = setInterval(()=>{
     bullet.style.left = curBullet + 'px'
     curBullet += 40;
-    if (curBullet > 1700) {
+    if (curBullet > 1300) {
       deleteBullet(bullet)
       clearInterval(intervalBullet)
     }
